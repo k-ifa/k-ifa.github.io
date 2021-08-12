@@ -97,26 +97,9 @@
     </div>
   </div>
 </section>
-
-{% for tag in site.tags  %}
-  <a class="post-anchor" id="{{ tag[0] | slugify }}"></a>
-  <div class="tag-title">
-    <span>#{{ tag[0] }}</span>
-  </div>
-  <ul class="post-list">
-      {% assign pages_list = tag[1] %}
-      {% for post in pages_list reversed %}
-          {% if post.title != null and post.is_generated != true %}
-            {% if group == null or group == post.group %}
-              <li><a href="{{ site.url }}{{ post.url }}">{{ post.title }}<span class="entry-date"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: date_format }}</time></a></li>
-            {% endif %}
-          {% endif %}
-      {% endfor %}
-      {% assign pages_list = nil %}
-      {% assign group = nil %}
-  </ul>
-{% endfor %}
-
+---
+layout: tags
+---
 
 <footer class="footer section">
     <div class="counter-item text-center mb-5 mb-lg-0">
