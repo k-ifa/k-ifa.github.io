@@ -98,82 +98,26 @@
   </div>
 </section>
 
-<section class="post">
-    <article id="post" class="post-content fullwidth" role="main">
-        <div class="tag-title"><span>#공지사항</span></div>
-        <ul class="post-list">
-            <li><a href="http://localhost:4000/notice1/">notice1<span class="entry-date"><time datetime="2021-08-01T21:26:40+09:00">2021-08-01</time></a>
-            </li>
-        </ul>
-        <a class="post-anchor" id="tips"></a>
-        <div class="tag-title"><span>#tips</span></div>
-        <ul class="post-list">
-            <li><a href="http://localhost:4000/notice1/">notice1<span class="entry-date"><time datetime="2010-09-10T21:26:40+09:00">09/10/2010</time></a>
+{% for tag in site.tags  %}
+  <a class="post-anchor" id="{{ tag[0] | slugify }}"></a>
+  <div class="tag-title">
+    <span>#{{ tag[0] }}</span>
+  </div>
+  <ul class="post-list">
+      {% assign pages_list = tag[1] %}
+      {% for post in pages_list reversed %}
+          {% if post.title != null and post.is_generated != true %}
+            {% if group == null or group == post.group %}
+              <li><a href="{{ site.url }}{{ post.url }}">{{ post.title }}<span class="entry-date"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: date_format }}</time></a></li>
+            {% endif %}
+          {% endif %}
+      {% endfor %}
+      {% assign pages_list = nil %}
+      {% assign group = nil %}
+  </ul>
+{% endfor %}
 
-            </li>
-        </ul>
-        <a class="post-anchor" id="work"></a>
-        <div class="tag-title"><span>#work</span></div>
-        <ul class="post-list">
-            <li><a href="http://localhost:4000/notice1/">notice1<span class="entry-date"><time datetime="2010-09-10T21:26:40+09:00">09/10/2010</time></a>
 
-        </ul>
-        <a class="post-anchor" id="career"></a>
-        <div class="tag-title"><span>#career</span></div>
-        <ul class="post-list">
-            <li><a href="http://localhost:4000/notice1/">notice1<span class="entry-date"><time datetime="2010-09-10T21:26:40+09:00">09/10/2010</time></a>
-
-        </ul>
-        <a class="post-anchor" id="music"></a>
-        <div class="tag-title"><span>#music</span></div>
-        <ul class="post-list">
-            <li><a href="http://localhost:4000/notice1/">notice1<span class="entry-date"><time datetime="2010-09-10T21:26:40+09:00">09/10/2010</time></a>
-
-        </ul>
-        <a class="post-anchor" id="band"></a>
-        <div class="tag-title"><span>#band</span></div>
-        <ul class="post-list">
-            <li><a href="http://localhost:4000/notice1/">notice1<span class="entry-date"><time datetime="2010-09-10T21:26:40+09:00">09/10/2010</time></a>
-
-        </ul>
-        <a class="post-anchor" id="passion"></a>
-        <div class="tag-title"><span>#passion</span></div>
-        <ul class="post-list">
-            <li><a href="http://localhost:4000/notice1/">notice1<span class="entry-date"><time datetime="2010-09-10T21:26:40+09:00">09/10/2010</time></a>
-
-        </ul>
-        <a class="post-anchor" id="cook"></a>
-        <div class="tag-title"><span>#cook</span></div>
-        <ul class="post-list">
-            <li><a href="http://localhost:4000/notice1/">notice1<span class="entry-date"><time datetime="2010-09-10T21:26:40+09:00">09/10/2010</time></a>
-
-        </ul>
-        <a class="post-anchor" id="cucine"></a>
-        <div class="tag-title"><span>#cucine</span></div>
-        <ul class="post-list">
-            <li><a href="http://localhost:4000/notice1/">notice1<span class="entry-date"><time datetime="2010-09-10T21:26:40+09:00">09/10/2010</time></a>
-
-        </ul>
-        <a class="post-anchor" id="story"></a>
-        <div class="tag-title"><span>#story</span></div>
-        <ul class="post-list">
-            <li><a href="http://localhost:4000/notice1/">notice1<span class="entry-date"><time datetime="2010-09-10T21:26:40+09:00">09/10/2010</time></a>
-
-        </ul>
-        <a class="post-anchor" id="fate"></a>
-        <div class="tag-title"><span>#fate</span></div>
-        <ul class="post-list">
-            <li><a href="http://localhost:4000/notice1/">notice1<span class="entry-date"><time datetime="2010-09-10T21:26:40+09:00">09/10/2010</time></a>
-
-        </ul>
-        <a class="post-anchor" id="travel"></a>
-        <div class="tag-title"><span>#travel</span></div>
-        <ul class="post-list">
-            <li><a href="http://localhost:4000/notice1/">notice1<span class="entry-date"><time datetime="2010-09-10T21:26:40+09:00">09/10/2010</time></a>
-
-        </ul>
-    </article>
-</section>
 <footer class="footer section">
     <div class="counter-item text-center mb-5 mb-lg-0">
         <div class="widget">
