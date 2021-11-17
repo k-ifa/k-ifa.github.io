@@ -857,6 +857,7 @@ ul.dropdown-menu li {
 }
 
 .image-center {
+  position: relative;
   width: 100%;
   height: auto;
 }
